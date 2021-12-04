@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>The Generics | Store</title>
+    <meta name="description" content="This is the description">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://checkout.stripe.com/checkout.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        var stripePublicKey = '<%= stripePublicKey %>'
+    </script>
+    <script src="store.js" defer></script>
+</head>
+
+<body>
+    <!--navbar-->
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><button type="button" class="but-nav" data-toggle="modal" data-target="#myModal">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    <!--end of navbar-->
+
+    <!--header-->
+    <div class="wide">
+        <div class="col-xs-5 line">
+            <hr>
+        </div>
+        <div class="col-xs-2 logo">Logo</div>
+        <div class="col-xs-5 line">
+            <hr>
+        </div>
+    </div>
+    <!--end of header-->
+
+
+
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">CART</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- cart -->
+                        <section class="container content-section">
+                            <h2 class="section-header"></h2>
+                            <div class="cart-row">
+                                <span class="cart-item cart-header cart-column">ITEM</span>
+                                <span class="cart-price cart-header cart-column">PRICE</span>
+                                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                            </div>
+                            <div class="cart-items">
+                            </div>
+                            <div class="cart-total">
+                                <strong class="cart-total-title">Total</strong>
+                                <span class="cart-total-price">$0</span>
+                            </div>
+                            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+                        </section>
+
+                        <!-- end of cart -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- order -->
+    <section class="">
+        <h2 class="section-header">Menu</h2>
+        <div class="products-center">
+
+            <% items.menu.forEach(function(item){ %>
+                <div class="box">
+                    <div class="shop-item" data-item-id="<%= item.id %>">
+                        <div class="img-container">
+                            <img class="shop-item-image" src="Images/<%= item.imgName %>">
+
+                            <br>
+                            <button class="bag-btn btn btn-primary shop-item-button" type="button">
+                                ADD TO CART
+                            </button>
+                        </div>
+
+                        <div class="menu-item-text">
+                            <span class="shop-item-title">
+                                <%= item.name %>
+                            </span>
+                            <span class="shop-item-price">$<%= item.price / 100 %></span>
+                            <br>
+                            <span class="shop-item-des">
+                                <%= item.des %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </section>
+    <!-- end of order -->
+    <br>
+    <footer>
+
+        <div class="centerFooter">
+            <a href="#">Logo | 2021 &copy;</a>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
